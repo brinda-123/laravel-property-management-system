@@ -1,54 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-<title>@yield('title') </title>
- @vite(['resources/js/app.js'])
+    <title>@yield('title') </title>
+    @vite(['resources/js/app.js'])
 
-<!-- Fav Icon -->
-<link rel="icon" href="{{ asset('frontend/assets/images/favicon.ico') }}" type="image/x-icon">
+    <!-- Fav Icon -->
+    <link rel="icon" href="{{ asset('frontend/assets/images/favicon.ico') }}" type="image/x-icon">
 
-<meta name="csrf-token" content="{{ csrf_token() }}" >
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-<!-- Stylesheets -->
-<link href="{{ asset('frontend/assets/css/font-awesome-all.css') }}" rel="stylesheet">
-<link href="{{ asset('frontend/assets/css/flaticon.css') }}" rel="stylesheet">
-<link href="{{ asset('frontend/assets/css/owl.css') }}" rel="stylesheet">
-<link href="{{ asset('frontend/assets/css/bootstrap.css') }}" rel="stylesheet">
-<link href="{{ asset('frontend/assets/css/jquery.fancybox.min.css') }}" rel="stylesheet">
-<link href="{{ asset('frontend/assets/css/animate.css') }}" rel="stylesheet">
-<link href="{{ asset('frontend/assets/css/jquery-ui.css') }}" rel="stylesheet">
-<link href="{{ asset('frontend/assets/css/nice-select.css') }}" rel="stylesheet">
-<link href="{{ asset('frontend/assets/css/color/theme-color.css') }}" id="jssDefault" rel="stylesheet">
-<link href="{{ asset('frontend/assets/css/switcher-style.css') }}" rel="stylesheet">
-<link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
-<link href="{{ asset('frontend/assets/css/responsive.css') }}" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link href="{{ asset('frontend/assets/css/font-awesome-all.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/flaticon.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/owl.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/jquery.fancybox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/jquery-ui.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/nice-select.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/color/theme-color.css') }}" id="jssDefault" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/switcher-style.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/responsive.css') }}" rel="stylesheet">
 
- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
 
 </head>
 
 
 <!-- page wrapper -->
+
 <body>
 
     <div class="boxed_wrapper">
 
 
         <!-- preloader -->
-      @include('frontend.home.preload')
+        @include('frontend.home.preload')
         <!-- preloader end -->
 
 
         <!-- switcher menu -->
-   
+
         <!-- end switcher menu -->
 
 
@@ -57,14 +59,14 @@
         <!-- main-header end -->
 
         <!-- Mobile Menu  -->
-         @include('frontend.home.mobile_menu')
-       <!-- End Mobile Menu -->
+        @include('frontend.home.mobile_menu')
+        <!-- End Mobile Menu -->
 
 
-       @yield('main')
+        @yield('main')
 
         <!-- main-footer -->
-       @include('frontend.home.footer')
+        @include('frontend.home.footer')
         <!-- main-footer end -->
 
 
@@ -92,118 +94,112 @@
     <script src="{{ asset('frontend/assets/js/jquery-ui.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/nav-tool.js') }}"></script>
 
- <!-- map script -->
+    <!-- map script -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>
     <script src="{{ asset('frontend/assets/js/gmaps.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/map-helper.js') }}"></script>
 
-    
+
     <!-- main-js -->
     <script src="{{ asset('frontend/assets/js/script.js') }}"></script>
-  
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type','info') }}"
+        switch (type) {
+            case 'info':
+                toastr.info(" {{ Session::get('message') }} ");
+                break;
 
-<script>
- @if(Session::has('message'))
- var type = "{{ Session::get('alert-type','info') }}"
- switch(type){
-    case 'info':
-    toastr.info(" {{ Session::get('message') }} ");
-    break;
+            case 'success':
+                toastr.success(" {{ Session::get('message') }} ");
+                break;
 
-    case 'success':
-    toastr.success(" {{ Session::get('message') }} ");
-    break;
+            case 'warning':
+                toastr.warning(" {{ Session::get('message') }} ");
+                break;
 
-    case 'warning':
-    toastr.warning(" {{ Session::get('message') }} ");
-    break;
-
-    case 'error':
-    toastr.error(" {{ Session::get('message') }} ");
-    break; 
- }
- @endif 
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-<script type="text/javascript">
-    $.ajaxSetup({
-        headers:{
-            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            case 'error':
+                toastr.error(" {{ Session::get('message') }} ");
+                break;
         }
-    })
-    
-    // Add To Wishlist 
-    function addToWishList(property_id){
-        $.ajax({
-            type: "POST",
-            dataType: 'json',
-            url: "/add-to-wishList/"+property_id,
+        @endif
+    </script>
 
-            success:function(data){
-               wishlist();
-                // Start Message 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-            const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'top-end',
-                  
-                  showConfirmButton: false,
-                  timer: 3000 
-            })
-            if ($.isEmptyObject(data.error)) {
-                    
-                    Toast.fire({
-                    type: 'success',
-                    icon: 'success', 
-                    title: data.success, 
-                    })
-
-            }else{
-               
-           Toast.fire({
-                    type: 'error',
-                    icon: 'error', 
-                    title: data.error, 
-                    })
-                }
-
-              // End Message  
-
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         })
 
-    }
+        // Add To Wishlist 
+        function addToWishList(property_id) {
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "/add-to-wishList/" + property_id,
 
+                success: function(data) {
+                    wishlist();
+                    // Start Message 
 
-</script>
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
 
-<!-- // start load Wishlist Data  -->
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
 
-<script type="text/javascript">
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
 
-    function wishlist(){
-        $.ajax({
-            type: "GET",
-            dataType: 'json',
-            url: "/get-wishlist-property/",
+                    } else {
 
-            success:function(response){
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
 
-                $('#wishQty').text(response.wishQty);
+                    // End Message  
 
-                var rows = ""
-                $.each(response.wishlist, function(key,value){
+                }
+            })
 
-                  rows += `<div class="deals-block-one">
+        }
+    </script>
+
+    <!-- // start load Wishlist Data  -->
+
+    <script type="text/javascript">
+        function wishlist() {
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "/get-wishlist-property/",
+
+                success: function(response) {
+
+                    $('#wishQty').text(response.wishQty);
+
+                    var rows = ""
+                    $.each(response.wishlist, function(key, value) {
+
+                        rows += `<div class="deals-block-one">
         <div class="inner-box">
             <div class="image-box">
                 <figure class="image"><img src="/${value.property.property_thambnail}" alt=""></figure>
@@ -235,131 +231,126 @@
                 </div>
             </div>
         </div>
-    </div> `  
-                });
+    </div> `
+                    });
 
-      $('#wishlist').html(rows);       
-            }
-        })
-    }
-
-    wishlist();
-
-
-    // Wishlist Remove Start 
-
-    function wishlistRemove(id){
-        $.ajax({
-            type: "GET",
-            dataType: 'json',
-            url: "/wishlist-remove/"+id,
-
-            success:function(data){
-                wishlist();
-
-                 // Start Message 
-
-            const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'top-end',
-                  
-                  showConfirmButton: false,
-                  timer: 3000 
-            })
-            if ($.isEmptyObject(data.error)) {
-                    
-                    Toast.fire({
-                    type: 'success',
-                    icon: 'success', 
-                    title: data.success, 
-                    })
-
-            }else{
-               
-           Toast.fire({
-                    type: 'error',
-                    icon: 'error', 
-                    title: data.error, 
-                    })
+                    $('#wishlist').html(rows);
                 }
-
-              // End Message  
-
-
-            }
-        })
-
-    }
-
-    /// End Wishlist Remove  
-    
-</script>
-
-<!-- /// Add to Carepage  -->
-<script type="text/javascript">
-
-     function addToCompare(property_id){
-        $.ajax({
-            type: "POST",
-            dataType: 'json',
-            url: "/add-to-compare/"+property_id,
-
-            success:function(data){
-               
-                // Start Message 
-
-            const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'top-end',
-                  
-                  showConfirmButton: false,
-                  timer: 3000 
             })
-            if ($.isEmptyObject(data.error)) {
-                    
-                    Toast.fire({
-                    type: 'success',
-                    icon: 'success', 
-                    title: data.success, 
-                    })
+        }
 
-            }else{
-               
-           Toast.fire({
-                    type: 'error',
-                    icon: 'error', 
-                    title: data.error, 
+        wishlist();
+
+
+        // Wishlist Remove Start 
+
+        function wishlistRemove(id) {
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "/wishlist-remove/" + id,
+
+                success: function(data) {
+                    wishlist();
+
+                    // Start Message 
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
                     })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+
+                    // End Message  
+
+
                 }
+            })
 
-              // End Message  
+        }
 
-            }
-        })
+        /// End Wishlist Remove  
+    </script>
 
-    }
-    
+    <!-- /// Add to Carepage  -->
+    <script type="text/javascript">
+        function addToCompare(property_id) {
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "/add-to-compare/" + property_id,
 
-</script>
+                success: function(data) {
+
+                    // Start Message 
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+
+                    // End Message  
+
+                }
+            })
+
+        }
+    </script>
 
 
-<!-- // start load Wishlist Data  -->
+    <!-- // start load Wishlist Data  -->
 
-<script type="text/javascript">
+    <script type="text/javascript">
+        function compare() {
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "/get-compare-property/",
 
-    function compare(){
-        $.ajax({
-            type: "GET",
-            dataType: 'json',
-            url: "/get-compare-property/",
+                success: function(response) {
 
-            success:function(response){
- 
 
-                var rows = ""
-                $.each(response, function(key,value){
+                    var rows = ""
+                    $.each(response, function(key, value) {
 
-  rows += ` <tr>
+                        rows += ` <tr>
                 <th>Property Info</th>
                 <th>
                     <figure class="image-box"><img src="/${value.property.property_thambnail}" alt=""></figure>
@@ -414,66 +405,66 @@
                     <a type="submit" class="text-body" id="${value.id}" onclick="compareRemove(this.id)" ><i class="fa fa-trash"></i></a>
                 </td>
                  
-            </tr> `  
-                });
+            </tr> `
+                    });
 
-      $('#compare').html(rows);       
-            }
-        })
-    }
-
-    compare();
-
-
-    // Compare Remove Start 
-
-     function compareRemove(id){
-        $.ajax({
-            type: "GET",
-            dataType: 'json',
-            url: "/compare-remove/"+id,
-
-            success:function(data){
-                compare();
-
-                 // Start Message 
-
-            const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'top-end',
-                  
-                  showConfirmButton: false,
-                  timer: 3000 
-            })
-            if ($.isEmptyObject(data.error)) {
-                    
-                    Toast.fire({
-                    type: 'success',
-                    icon: 'success', 
-                    title: data.success, 
-                    })
-
-            }else{
-               
-           Toast.fire({
-                    type: 'error',
-                    icon: 'error', 
-                    title: data.error, 
-                    })
+                    $('#compare').html(rows);
                 }
+            })
+        }
 
-              // End Message  
+        compare();
 
 
-            }
-        })
+        // Compare Remove Start 
 
-    }
- 
-    /// End Compare Remove  
-    
-</script>
+        function compareRemove(id) {
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "/compare-remove/" + id,
+
+                success: function(data) {
+                    compare();
+
+                    // Start Message 
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+
+                    // End Message  
+
+
+                }
+            })
+
+        }
+
+        /// End Compare Remove  
+    </script>
 
 
 </body><!-- End of .page_wrapper -->
+
 </html>
