@@ -2,7 +2,7 @@
 @section('main')
 
 @section('title')
-{{ $property->property_name }} | Easy RealEstate
+{{ $property->property_name }} | RealEstate
 @endsection
 
 
@@ -16,7 +16,7 @@
         <div class="content-box clearfix">
             <h1>{{ $property->property_name }}</h1>
             <ul class="bread-crumb clearfix">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{ url('/') }}">Home</a></li>
                 <li>{{ $property->property_name }}</li>
             </ul>
         </div>
@@ -58,18 +58,18 @@
             <div class="right-column pull-right clearfix">
                 <div class="price-inner clearfix">
                     <ul class="category clearfix pull-left">
-                        <li><a href="property-details.html">{{ $property->type->type_name }}</a></li>
-                        <li><a href="property-details.html">For {{ $property->property_status }}</a></li>
+                        <li><a href="{{ route('property.type',$property->id) }}">{{ $property->type->type_name }}</a></li>
+                        <li><a href="{{ route('front.all.property')}}">For {{ $property->property_status }}</a></li>
                     </ul>
                     <div class="price-box pull-right">
-                        <h3>${{ $property->lowest_price }}</h3>
+                        <h3>₹ {{ $property->lowest_price }}</h3>
                     </div>
                 </div>
                 <ul class="other-option pull-right clearfix">
                     <li><a href="property-details.html"><i class="icon-37"></i></a></li>
                     <li><a href="property-details.html"><i class="icon-38"></i></a></li>
-                    <li><a href="property-details.html"><i class="icon-12"></i></a></li>
-                    <li><a href="property-details.html"><i class="icon-13"></i></a></li>
+                    <li><a aria-label="Compare" class="action-btn" id="{{ $property->id }}" onclick="addToCompare(this.id)"><i class="icon-12"></i></a></li>
+                    <li><a aria-label="Add To Wishlist" class="action-btn" id="{{ $property->id }}" onclick="addToWishList(this.id)"><i class="icon-13"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -131,15 +131,14 @@
                         </ul>
                         <div class="google-map-area">
                             <div class="google-map" id="contact-google-map" data-map-lat="{{ $property->latitude }}" data-map-lng="{{ $property->longitude }}" data-icon-path="{{ asset('frontend/assets/images/icons/map-marker.png') }}" data-map-title="Brooklyn, New York, United Kingdom" data-map-zoom="12" data-markers='{
-            "marker-1": [40.712776, -74.005974, "<h4>Branch Office</h4><p>77/99 New York</p>","{{ asset('frontend/assets/images/icons/map-marker.png') }}"]
-        }'>
+            "marker-1": [40.712776, -74.005974, "<h4>Branch Office</h4><p>77/99 New York</p>","{{ asset('frontend /assets/images/icons/map-marker.png') }}"]}'>
 
                             </div>
                         </div>
                     </div>
                     <div class="nearby-box content-widget">
                         <div class="title-box">
-                            <h4>What’s Nearby?</h4>
+                            <h4>What's Nearby?</h4>
                         </div>
                         <div class="inner-box">
 
@@ -371,11 +370,11 @@
                             </div>
                             <form method="post" action="mortgage-calculator.html" class="default-form">
                                 <div class="form-group">
-                                    <i class="fas fa-dollar-sign"></i>
+                                    <i class="fas fa-rupee-sign"></i>
                                     <input type="number" name="total_amount" placeholder="Total Amount">
                                 </div>
                                 <div class="form-group">
-                                    <i class="fas fa-dollar-sign"></i>
+                                    <i class="fas fa-rupee-sign"></i>
                                     <input type="number" name="down_payment" placeholder="Down Payment">
                                 </div>
                                 <div class="form-group">
@@ -443,7 +442,7 @@
                                 <div class="price-box clearfix">
                                     <div class="price-info pull-left">
                                         <h6>Start From</h6>
-                                        <h4>${{ $item->lowest_price }}</h4>
+                                        <h4>₹ {{ $item->lowest_price }}</h4>
                                     </div>
                                     <ul class="other-option pull-right clearfix">
                                         <li><a href="property-details.html"><i class="icon-12"></i></a></li>

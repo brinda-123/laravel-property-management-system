@@ -15,7 +15,7 @@
                       </button>
                       <div class="order-first">
                         <h4>Mail Service</h4>
-                        <p class="text-muted">Support@easylearningbd.com</p>
+                        <p class="text-muted">Support@realestate.com</p>
                       </div>
                     </div>
                     <div class="d-grid my-3">
@@ -24,7 +24,7 @@
                     <div class="email-aside-nav collapse">
                       <ul class="nav flex-column">
                         <li class="nav-item active">
-                          <a class="nav-link d-flex align-items-center" href="../email/inbox.html">
+                          <a class="nav-link d-flex align-items-center" href="{{ route('agent.property.message') }}">
                             <i data-feather="inbox" class="icon-lg me-2"></i>
                             Inbox
                             <span class="badge bg-danger fw-bolder ms-auto">{{ count($usermsg) }}

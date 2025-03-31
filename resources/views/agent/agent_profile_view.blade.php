@@ -13,8 +13,8 @@
                 <div class="d-flex align-items-center justify-content-between mb-2">
                    
 
-                  <div>
-  <img class="wd-100 rounded-circle" src="{{ (!empty($profileData->photo)) ? url('upload/agent_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="profile">
+                  <div >
+                    <img class="img-fluid rounded-circle border border-secondary p-1" style="width: 80px; height: 100px; object-fit: cover;" src="{{ (!empty($profileData->photo)) ? url('upload/agent_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="profile">
                     <span class="h4 ms-3 ">{{ $profileData->username }}</span>
                   </div>
 
@@ -100,7 +100,7 @@
 
 	<div class="mb-3">
  <label for="exampleInputEmail1" class="form-label">    </label>
-	<img id="showImage" class="wd-80 rounded-circle" src="{{ (!empty($profileData->photo)) ? url('upload/agent_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="profile">
+	<img id="showImage" class="img-fluid rounded-circle border border-secondary p-1" style="width: 80px; height: 100px; object-fit: cover;" src="{{ (!empty($profileData->photo)) ? url('upload/agent_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="profile">
 				</div>
 
 				 

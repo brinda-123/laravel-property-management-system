@@ -1,5 +1,5 @@
 
-   @php
+@php
    $setting = App\Models\SiteSetting::find(1);
    $blog = App\Models\BlogPost::latest()->limit(2)->get();
    @endphp
@@ -14,8 +14,8 @@
                                     <h3>About</h3>
                                 </div>
                                 <div class="text">
-                                    <p>Lorem ipsum dolor amet consetetur adi pisicing elit sed eiusm tempor in cididunt ut labore dolore magna aliqua enim ad minim venitam</p>
-                                    <p>Quis nostrud exercita laboris nisi ut aliquip commodo.</p>
+                                    <p>Welcome to realestate, where passion meets innovation. Since 15, we've been dedicated to Consumers. Our commitment to excellence and  drives us to deliver the Services that redefine realestate industry.</p>
+                                    <p>Join us on this journey of what sets you apart. Elevate your experience with us.</p>
                                 </div>
                             </div>
                         </div>
@@ -26,12 +26,12 @@
                                 </div>
                                 <div class="widget-content">
                                     <ul class="links-list class">
-                                        <li><a href="index.html">About Us</a></li>
+                                        <li><a href="{{ route('aboutus') }}">About Us</a></li>
                                         <li><a href="index.html">Listing</a></li>
                                         <li><a href="index.html">How It Works</a></li>
-                                        <li><a href="index.html">Our Services</a></li>
-                                        <li><a href="index.html">Our Blog</a></li>
-                                        <li><a href="index.html">Contact Us</a></li>
+                                        <li><a href="#chooseus-section">Our Services</a></li>
+                                        <li><a href="{{ route('blog.list') }}">Our Blog</a></li>
+                                        <li><a href="{{ route('contactus') }}">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
     <ul class="info-list clearfix">
         <li><i class="fas fa-map-marker-alt"></i>{{ $setting->company_address }}</li>
         <li><i class="fas fa-microphone"></i><a href="tel:23055873407">+{{ $setting->support_phone }}</a></li>
-        <li><i class="fas fa-envelope"></i><a href="mailto:info@example.com">{{ $setting->email }}</a></li>
+        <li><i class="fas fa-phone"></i><a href="mailto:realeasy@gmail.com">{{ $setting->email }}</a></li>
     </ul>
                                 </div>
                             </div>

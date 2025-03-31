@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    { 
+    {
         if (\Schema::hasTable('smtp_settings')) {
 
             $smtpsetting = SmtpSetting::first();
@@ -32,15 +32,14 @@ class AppServiceProvider extends ServiceProvider
                     'port' => $smtpsetting->post,
                     'username' => $smtpsetting->username,
                     'password' => $smtpsetting->password,
-                    'encryption' => $smtpsetting->encryption, 
+                    'encryption' => $smtpsetting->encryption,
                     'from' => [
                         'address' => $smtpsetting->from_address,
-                        'name' => 'Easylearning'
+                        'name' => 'RealeState'
                     ]
                 ];
-                Config::set('mail',$data);
+                Config::set('mail', $data);
             }
-            
         } // End If 
     }
 }

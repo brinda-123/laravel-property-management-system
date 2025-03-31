@@ -2,7 +2,7 @@
 @section('main')
 
 @section('title')
-  Easy Real Estate Complete Project  
+  Real Estate Property Listing  
 @endsection
 
         <!-- banner-section -->
@@ -11,9 +11,9 @@
  
 
  
-<!-- category-section -->
-  @include('frontend.home.category')
-<!-- category-section end -->
+        <!-- category-section -->
+          @include('frontend.home.category')
+        <!-- category-section end -->
 
 
         <!-- feature-section -->

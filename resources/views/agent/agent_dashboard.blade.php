@@ -41,7 +41,7 @@
   <!-- endinject -->
 
   <!-- Layout styles -->  
-  <link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css') }}">
+  <link id="theme-style" rel="stylesheet" href="{{ asset('backend/assets/css/demo1/style.css') }}">
   <!-- End layout styles -->
 
   <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.png') }}" />
@@ -89,7 +89,7 @@
   <!-- endinject -->
 
   <!-- Custom js for this page -->
-  <script src="{{ asset('backend/assets/js/dashboard-dark.js') }}"></script>
+  <script src="{{ asset('backend/assets/js/dashboard-light.js') }}"></script>
   <!-- End custom js for this page -->
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

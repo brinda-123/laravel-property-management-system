@@ -9,7 +9,7 @@
                 <div class="content-box clearfix">
                     <h1>User Profile </h1>
                     <ul class="bread-crumb clearfix">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
                         <li>User Profile </li>
                     </ul>
                 </div>
@@ -42,14 +42,42 @@
                     <div class="widget-title">
                         <h4>User Profile </h4>
                     </div>
-                    <div class="post-inner">
+
+                    <!-- <div class="post-inner">
                         <div class="post">
                             <figure class="post-thumb"><a href="blog-details.html">
-        <img src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg') }}" alt=""></a></figure>
-        <h5><a href="blog-details.html">{{ $userData->name }} </a></h5>
-         <p>{{ $userData->email }} </p>
+                                <img src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg') }}" alt=""></a></figure>
+                                <h5><a href="blog-details.html">{{ $userData->name }} </a></h5>
+                                <p>{{ $userData->email }} </p>
                         </div> 
-                    </div>
+                    </div> -->
+
+
+
+                    <div class="post-inner d-flex justify-content-center">
+                            <div class="post d-flex align-items-center p-6 shadow rounded bg-light" style="max-width: 350px;">
+                                <!-- Image on the left -->
+                                <figure class="post-thumb mb-0 me-3" style="margin-left: 10px;">
+                                    <a href="blog-details.html">
+                                        <img src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg') }}" 
+                                            alt="User Image" 
+                                            class="img-fluid rounded-circle border border-secondary p-1" 
+                                            style="width: 80px; height: 100px; object-fit: cover;">
+                                    </a>
+                                </figure>
+                                
+                                <!-- Text on the right -->
+                                <div class="text-end" style="margin-right: 10px;">
+                                    <h5 class="mb-1">
+                                        <a href="blog-details.html" class="text-dark text-decoration-none">{{ $userData->name }}</a>
+                                    </h5>
+                                    <p class="text-muted mb-0">{{ $userData->email }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                 </div> 
        
         <div class="sidebar-widget category-widget">
@@ -107,13 +135,14 @@
 
 
   <div class="form-group">
-            <label for="formFile" class="form-label">Default file input example</label>
+            <label for="formFile" class="form-label">Profile Photo</label>
   <input class="form-control" name="photo" type="file" id="image">
         </div>
 
           <div class="form-group">
             <label for="formFile" class="form-label"> </label>
- <img id="showImage"  src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg') }}" alt="" style="width: 100px; height: 100px;"></a>
+            <img id="showImage" class="img-fluid rounded-circle border border-secondary p-1" 
+            style="width: 80px; height: 100px; object-fit: cover;" src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg') }}" alt="" style="width: 100px; height: 100px;"></a>
         </div>
 
 

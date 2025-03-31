@@ -14,13 +14,33 @@
                 <div class="content-box clearfix">
                     <h1>Sign In</h1>
                     <ul class="bread-crumb clearfix">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
                         <li>Sign In</li>
                     </ul>
                 </div>
             </div>
         </section>
         <!--End Page Title-->
+        @if(Session::has('message'))
+    <script>
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        switch(type){
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
+    </script>
+@endif
+
 
 
         <!-- ragister-section -->

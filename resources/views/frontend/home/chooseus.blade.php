@@ -1,4 +1,5 @@
- <section class="chooseus-section">
+ <section id="chooseus-section">
+    <section class="chooseus-section">
             <div class="auto-container">
                 <div class="inner-container bg-color-2">
                     <div class="upper-box clearfix">
@@ -7,7 +8,7 @@
                             <h2>Reasons To Choose Us</h2>
                         </div>
                         <div class="btn-box">
-                            <a href="categories.html" class="theme-btn btn-one">All Categories</a>
+                            <a href="#category-section" class="theme-btn btn-one">All Categories</a>
                         </div>
                     </div>
                     <div class="lower-box">
@@ -44,3 +45,18 @@
                 </div>
             </div>
         </section>
+ </section>
+        <script>
+    $(document).ready(function() {
+        // Smooth scrolling for navigation links
+        $('a[href^="#"]').on('click', function(event) {
+            var target = $(this.getAttribute('href'));
+            if (target.length) {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top
+                }, 1000);
+            }
+        });
+    });
+</script>

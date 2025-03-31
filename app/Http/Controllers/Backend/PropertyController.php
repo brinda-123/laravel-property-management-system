@@ -13,19 +13,23 @@ use App\Models\User;
 use Intervention\Image\Facades\Image;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use App\Models\PackagePlan;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\PropertyMessage;
 use App\Models\State;
+use Illuminate\Support\Collection;
 
 class PropertyController extends Controller
 {
+
     public function AllProperty(){
 
         $property = Property::latest()->get();
         return view('backend.property.all_property',compact('property'));
 
     } // End Method 
+    
 
 
 
@@ -467,5 +471,78 @@ class PropertyController extends Controller
 
     }// End Method  
 
+    public function AdminMessageDetails($id){
+
+        $usermsg = PropertyMessage::get();
+
+        $msgdetails = PropertyMessage::findOrFail($id);
+        return view('backend.message.message_details',compact('usermsg','msgdetails'));
+
+    }// End Method  
+
+    public function BuyProperty()
+    {
+        try {
+            $property = Property::where('status', 1)
+                               ->where('property_status', 'buy')
+                               ->paginate(10);
+
+            $buyproperty = Property::where('property_status', 'buy')->get();
+
+        } catch (\Exception $e) {
+            $property = collect([]);
+            $buyproperty = collect([]);
+        }
+
+        return view('frontend.property.buy_property', compact('property', 'buyproperty'));
+    }
+
+    public function priceFilter(Request $request)
+    {
+        try {
+            // Convert price inputs to numeric values
+            $min_price = floatval($request->min_price);
+            $max_price = floatval($request->max_price);
+
+            // Base query
+            $query = Property::where('status', 1)
+                            ->where('property_status', 'buy');
+
+            // Apply price filters
+            if ($min_price > 0 && $max_price > 0) {
+                // Both min and max prices are set
+                $query->whereBetween('lowest_price', [$min_price, $max_price]);
+                $message = 'Properties between ₹' . number_format($min_price) . ' - ₹' . number_format($max_price);
+            } elseif ($min_price > 0) {
+                // Only min price is set
+                $query->where('lowest_price', '>=', $min_price);
+                $message = 'Properties from ₹' . number_format($min_price) . ' and above';
+            } elseif ($max_price > 0) {
+                // Only max price is set
+                $query->where('lowest_price', '<=', $max_price);
+                $message = 'Properties up to ₹' . number_format($max_price);
+            } else {
+                // No price filter applied
+                $message = 'All Properties';
+            }
+
+            // Get filtered properties
+            $property = $query->latest()->paginate(6);
+            
+            // Get total buy properties for counter
+            $buyproperty = Property::where('property_status', 'buy')->get();
+
+            return view('frontend.property.buy_property', compact('property', 'buyproperty'))
+                ->with([
+                    'min_price' => $min_price,
+                    'max_price' => $max_price,
+                    'message' => $message
+                ]);
+
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'An error occurred while filtering properties. Please try again.');
+        }
+    }
 
 }

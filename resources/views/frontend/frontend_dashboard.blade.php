@@ -200,27 +200,27 @@
                     $.each(response.wishlist, function(key, value) {
 
                         rows += `<div class="deals-block-one">
-        <div class="inner-box">
-            <div class="image-box">
-                <figure class="image"><img src="/${value.property.property_thambnail}" alt=""></figure>
-                <div class="batch"><i class="icon-11"></i></div>
-                <span class="category">Featured</span>
-                <div class="buy-btn"><a href="#">For ${value.property.property_status}</a></div>
-            </div>
-            <div class="lower-content">
-                <div class="title-text"><h4><a href="">${value.property.property_name}</a></h4></div>
-                <div class="price-box clearfix">
-                    <div class="price-info pull-left">
-                        <h6>Start From</h6>
-                        <h4>$${value.property.lowest_price}</h4>
-                    </div>
-                     
-                </div>
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><img src="/${value.property.property_thambnail}" alt="" style="width:300px; height:350px;"></figure>
+                                    <div class="batch"><i class="icon-11"></i></div>
+                                    <span class="category">Featured</span>
+                                    <div class="buy-btn"><a href="#">For ${value.property.property_status}</a></div>
+                                </div>
+                                <div class="lower-content">
+                                    <div class="title-text"><h4><a href="">${value.property.property_name}</a></h4></div>
+                                    <div class="price-box clearfix">
+                                        <div class="price-info pull-left">
+                                            <h6>Start From</h6>
+                                            <h4>₹${value.property.lowest_price}</h4>
+                                        </div>
+                                        
+                                    </div>
                
                 <ul class="more-details clearfix">
                     <li><i class="icon-14"></i>${value.property.bedrooms} Beds</li>
-                    <li><i class="icon-15"></i>${value.property.    bathrooms} Baths</li>
-                    <li><i class="icon-16"></i>${value.property.    property_size} Sq Ft</li>
+                    <li><i class="icon-15"></i>${value.property.bathrooms} Baths</li>
+                    <li><i class="icon-16"></i>${value.property.property_size} Sq Ft</li>
                 </ul>
                 <div class="other-info-box clearfix">
                     
@@ -345,70 +345,168 @@
                 url: "/get-compare-property/",
 
                 success: function(response) {
-
-
                     var rows = ""
                     $.each(response, function(key, value) {
-
-                        rows += ` <tr>
-                <th>Property Info</th>
-                <th>
-                    <figure class="image-box"><img src="/${value.property.property_thambnail}" alt=""></figure>
-                    <div class="title">${value.property.property_name}</div>
-                    <div class="price">$${value.property.lowest_price}</div>
-                </th>
-                
-               
-            </tr>    
-            <tr>
-                <td>
-                    <p>City</p>
-                </td>
-                <td>
-                    <p>${value.property.city}</p>
-                </td>
-                 
-            </tr>
-            <tr>
-                <td>
-                    <p>Area</p>
-                </td>
-                <td>
-                    <p>${value.property.property_size} Sq Ft</p>
-                </td>
-                 
-            </tr>
-            <tr>
-                <td>
-                    <p>Rooms</p>
-                </td>
-                <td>
-                    <p>${value.property.bedrooms}</p>
-                </td>
-                 
-            </tr>
-            <tr>
-                <td>
-                    <p>Bathrooms</p>
-                </td>
-                <td>
-                    <p>${value.property.bathrooms}</p>
-                </td>
-                 
-            </tr>
-
-              <tr>
-                <td>
-                    <p>Action</p>
-                </td>
-                <td>
-                    <a type="submit" class="text-body" id="${value.id}" onclick="compareRemove(this.id)" ><i class="fa fa-trash"></i></a>
-                </td>
-                 
-            </tr> `
+                        rows += `
+                        <div class="col-lg-6 mb-4">
+                            <div class="compare-property-card">
+                                <div class="property-header">
+                                    <h4>${value.property.property_name}</h4>
+                                    <div class="price-tag">₹ ${value.property.lowest_price}</div>
+                                </div>
+                                <div class="property-image">
+                                    <img src="/${value.property.property_thambnail}" alt="${value.property.property_name}" class="img-fluid">
+                                </div>
+                                <div class="property-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-city"></i>
+                                        <span>City: ${value.property.city}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-ruler-combined"></i>
+                                        <span>Area: ${value.property.property_size} Sq Ft</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-bed"></i>
+                                        <span>Bedrooms: ${value.property.bedrooms}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-bath"></i>
+                                        <span>Bathrooms: ${value.property.bathrooms}</span>
+                                    </div>
+                                </div>
+                                <div class="property-actions">
+                                    <a type="submit" class="text-danger remove-icon" id="${value.id}" onclick="compareRemove(this.id)">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`
                     });
 
-                    $('#compare').html(rows);
+                    $('#compare').html(`
+                        <div class="container">
+                            <div class="row">
+                                ${rows}
+                            </div>
+                        </div>
+                    `);
+
+                    // Add custom styles
+                    $('head').append(`
+                        <style>
+                            .compare-property-card {
+                                background: #fff;
+                                border-radius: 15px;
+                                box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+                                padding: 25px;
+                                transition: all 0.4s ease;
+                                border: 1px solid #eef0f6;
+                            }
+                            .compare-property-card:hover {
+                                transform: translateY(-5px);
+                                box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+                            }
+                            .property-header {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-bottom: 20px;
+                                padding-bottom: 15px;
+                                padding-bottom: 15px;
+                                border-bottom: 2px solid #f5f5f5;
+                            }
+                            .property-header h4 {
+                                margin: 0;
+                                color: #2c3e50;
+                                font-size: 1.4rem;
+                                font-weight: 600;
+                            }
+                            .price-tag {
+                                background: #f8f9fa;
+                                color: #2c3e50;
+                                padding: 8px 20px;
+                                border-radius: 30px;
+                                font-weight: 600;
+                                font-size: 1.1rem;
+                                border: 1px solid #e9ecef;
+                            }
+                            .property-image {
+                                margin-bottom: 25px;
+                                position: relative;
+                                overflow: hidden;
+                                border-radius: 12px;
+                            }
+                            .property-image img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                transition: transform 0.5s ease;
+                            }
+                            .property-image:hover img {
+                                transform: scale(1.05);
+                            }
+                            .property-details {
+                                background: #f8f9fa;
+                                padding: 20px;
+                                border-radius: 12px;
+                                margin-bottom: 20px;
+                            }
+                            .detail-item {
+                                display: flex;
+                                align-items: center;
+                                padding: 12px 0;
+                                border-bottom: 1px solid #e9ecef;
+                            }
+                            .detail-item:last-child {
+                                border-bottom: none;
+                            }
+                            .detail-item i {
+                                width: 35px;
+                                height: 35px;
+                                background: #fff;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                margin-right: 15px;
+                                color: #2c3e50;
+                                font-size: 1rem;
+                                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                            }
+                            .detail-item span {
+                                color: #4a5568;
+                                font-size: 1rem;
+                                font-weight: 500;
+                            }
+                            .property-actions {
+                                display: flex;
+                                justify-content: flex-end;
+                                align-items: center;
+                            }
+                            .remove-icon {
+                                width: 40px;
+                                height: 40px;
+                                background: #fff1f1;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                cursor: pointer;
+                                transition: all 0.3s ease;
+                            }
+                            .remove-icon i {
+                                color: #dc3545;
+                                font-size: 1rem;
+                            }
+                            .remove-icon:hover {
+                                background: #dc3545;
+                            }
+                            .remove-icon:hover i {
+                                color: #fff;
+                            }
+                        </style>
+                    `);
                 }
             })
         }

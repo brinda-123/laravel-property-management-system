@@ -22,6 +22,10 @@ use App\Models\State;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ScheduleMail;
+use Illuminate\Support\Facades\Route;
+
+
+
 
 class AgentPropertyController extends Controller
 {
@@ -72,7 +76,9 @@ class AgentPropertyController extends Controller
 
         $image = $request->file('property_thambnail');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(370,250)->save('upload/property/thambnail/'.$name_gen);
+        // Image::make($image)->resize(370,250)->save('upload/property/thambnail/'.$name_gen);
+        Image::make($image)->resize(370, 250)->save(public_path('upload/property/thambnail/' . $name_gen));
+
         $save_url = 'upload/property/thambnail/'.$name_gen;
 
         $property_id = Property::insertGetId([
@@ -148,9 +154,15 @@ class AgentPropertyController extends Controller
          /// End Facilities  ////
 
 
-        User::where('id',$id)->update([
-            'credit' => DB::raw('1 + '.$nid),
+        // User::where('id',$id)->update([
+        //     'credit' => DB::raw('1 + '.$nid),
+        // ]);
+
+        User::where('id', $id)->update([
+            'credit' => DB::raw('credit + 1'),  // Fix arithmetic operation
+            'updated_at' => now(),              // Use Laravel's timestamp function
         ]);
+        
 
 
             $notification = array(
@@ -453,7 +465,7 @@ public function AgentUpdatePropertyThambnail(Request $request){
 
 
        $notification = array(
-            'message' => 'You have purchase Basic Package Successfully',
+            'message' => 'Package Purchased Successfully',
             'alert-type' => 'success'
         );
 
