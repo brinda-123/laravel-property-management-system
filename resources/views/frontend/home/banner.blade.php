@@ -20,7 +20,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
                     <div class="auto-container">
                         <div class="content-box"><br><br><br>
 
-                            <h2>Search Properties for Sale and To Buy</h2>
+                            <h2>Search Properties for Buy</h2>
                             <p>Amet consectetur adipisicing elit sed do eiusmod.</p>
                         </div>   
                     </div>
@@ -47,6 +47,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
                             <!-- <li class="tab-btn" data-tab="#tab-2">RENT</li> -->
                         </ul>
                     </div>
+                    
                     <div class="tabs-content info-group">
                         <div class="tab active-tab" id="tab-1">
                             <div class="inner-box">

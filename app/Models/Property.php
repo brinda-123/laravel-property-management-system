@@ -21,8 +21,4 @@ class Property extends Model
     public function pstate(){
         return $this->belongsTo(State::class,'state','id');
     }
-
-
-
-
 }

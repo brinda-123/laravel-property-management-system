@@ -95,9 +95,9 @@ $isMainIndexPage = Request::url() == url('/');
                         </div>
                     </nav>
                 </div>
-                <div class="btn-box">
+                <!-- <div class="btn-box">
                     <a href="{{ route('agent.login') }}" class="theme-btn btn-one"><span>+</span>Add Listing</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -114,9 +114,9 @@ $isMainIndexPage = Request::url() == url('/');
                         <!--Keep This Empty / Menu will come through Javascript-->
                     </nav>
                 </div>
-                <div class="btn-box">
+                <!-- <div class="btn-box">
                     <a href="{{ route('agent.login') }}" class="theme-btn btn-one"><span>+</span>Add Listing</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

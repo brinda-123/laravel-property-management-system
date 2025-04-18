@@ -20,6 +20,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
 
+
 /*   
 |--------------------------------------------------------------------------
 | Web Routes
@@ -325,8 +326,6 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
           Route::get('/delete/admin/{id}', 'DeleteAdmin')->name('delete.admin');
      });
 }); // End Group Admin Middleware
-
-
 
 
 

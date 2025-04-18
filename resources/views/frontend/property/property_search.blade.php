@@ -2,6 +2,7 @@
 @section('main')
 
 
+
 <!--Page Title-->
 <section class="page-title-two bg-color-1 centred">
     <div class="pattern-layer">
@@ -66,7 +67,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="select-box">
+                                <!-- <div class="select-box">
                                     <select name="bedrooms" class="wide">
                                         <option data-display="Rooms">Max Rooms</option>
                                         <option value="1">1 Rooms</option>
@@ -85,7 +86,7 @@
                                         <option value="4">4 BathRoom</option>
                                         <option value="5">5 BathRoom</option>
                                     </select>
-                                </div>
+                                </div> -->
 
                                 <div class="filter-btn">
                                     <button type="submit" class="theme-btn btn-one"><i class="fas fa-filter"></i>&nbsp;Filter</button>
@@ -95,26 +96,20 @@
 
 
                     </div>
-                    <div class="price-filter sidebar-widget">
-                        <div class="widget-title">
-                            <h5>Select Price Range</h5>
-                        </div>
-                        <div class="range-slider clearfix">
-                            <div class="clearfix">
-                                <div class="input">
-                                    <input type="text" class="property-amount" name="field-name" readonly="">
-                                </div>
-                            </div>
-                            <div class="price-range-slider"></div>
-                        </div>
-                    </div>
+                    
+
+
+
                     <div class="category-widget sidebar-widget">
                         <div class="widget-title">
                             <h5>Status Of Property</h5>
                         </div>
                         <ul class="category-list clearfix">
                             <!-- <li><a href="{{ route('rent.property') }}">For Rent <span>(200)</span></a></li> -->
-                            <li><a href="{{ route('buy.property') }}">For Buy <span>(700)</span></a></li>
+                            <li><a href="{{ route('buy.property') }}">For Buy 
+                                <span>({{ isset($buyproperty) ? $buyproperty->count() : 0 }})</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
 
@@ -158,7 +153,7 @@
                                         <div class="price-box clearfix">
                                             <div class="price-info pull-left">
                                                 <h6>Start From</h6>
-                                                <h4>₹ {{ $item->lowest_price }}</h4>
+                                                <h4>₹{{ $item->lowest_price }}</h4>
                                             </div>
 
                                             @if($item->agent_id == Null)

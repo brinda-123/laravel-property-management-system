@@ -142,7 +142,7 @@ class IndexController extends Controller
     {
 
         $property = Property::where('status', '1')->where('property_status', 'buy')->paginate(3);
-        $rentproperty = Property::where('property_status', 'rent')->get();
+        // $rentproperty = Property::where('property_status', 'rent')->get();
         $buyproperty = Property::where('property_status', 'buy')->get();
 
         return view('frontend.property.buy_property', compact('property', 'rentproperty', 'buyproperty'));
@@ -151,7 +151,7 @@ class IndexController extends Controller
 
     public function AllProperty() {
         $property = Property::where('status', '1')->paginate(10);
-        $rentproperty = Property::where('property_status', 'rent')->get();
+        // $rentproperty = Property::where('property_status', 'rent')->get();
         $buyproperty = Property::where('property_status', 'buy')->get();
     
         return view('frontend.property.all_property', compact('property', 'rentproperty', 'buyproperty'));
@@ -179,6 +179,8 @@ class IndexController extends Controller
         return view('frontend.property.state_property', compact('property', 'bstate'));
     } // End Method 
 
+
+    // Property search function
     public function BuyPropertySeach(Request $request)
     {
 
@@ -201,7 +203,7 @@ class IndexController extends Controller
 
 
     // public function RentPropertySeach(Request $request)
-    // {
+    // {web
 
     //     $request->validate(['search' => 'required']);
     //     $item = $request->search;

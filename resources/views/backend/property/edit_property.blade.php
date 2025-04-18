@@ -46,7 +46,8 @@
     <div class="col-sm-6">
             <div class="form-group mb-3">
                 <label class="form-label">Lowest Price </label>
-                <input type="text" name="lowest_price" class="form-control" value="{{ $property->lowest_price }}"  >
+                <input type="number" name="lowest_price" class="form-control" min="0" step="1" value="{{ $property->lowest_price }}" required>
+                <small class="text-muted">Enter price without commas or decimals (e.g., 785000)</small>
             </div>
         </div><!-- Col -->
 

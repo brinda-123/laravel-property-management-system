@@ -52,6 +52,9 @@ class PropertyController extends Controller
 
         $pcode = IdGenerator::generate(['table' => 'properties','field' => 'property_code','length' => 5, 'prefix' => 'PC' ]);
 
+        // Format the price by removing any commas and converting to a proper number
+        $lowest_price = str_replace(',', '', $request->lowest_price);
+        $max_price = str_replace(',', '', $request->max_price);
 
         $image = $request->file('property_thambnail');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
@@ -67,8 +70,8 @@ class PropertyController extends Controller
             'property_code' => $pcode,
             'property_status' => $request->property_status,
 
-            'lowest_price' => $request->lowest_price,
-            'max_price' => $request->max_price,
+            'lowest_price' => $lowest_price,
+            'max_price' => $max_price,
             'short_descp' => $request->short_descp,
             'long_descp' => $request->long_descp,
             'bedrooms' => $request->bedrooms,
@@ -167,6 +170,10 @@ class PropertyController extends Controller
         $amen = $request->amenities_id;
         $amenites = implode(",", $amen);
 
+        // Format the price by removing any commas and converting to a proper number
+        $lowest_price = str_replace(',', '', $request->lowest_price);
+        $max_price = str_replace(',', '', $request->max_price);
+
         $property_id = $request->id;
 
         Property::findOrFail($property_id)->update([
@@ -177,8 +184,8 @@ class PropertyController extends Controller
             'property_slug' => strtolower(str_replace(' ', '-', $request->property_name)), 
             'property_status' => $request->property_status,
 
-            'lowest_price' => $request->lowest_price,
-            'max_price' => $request->max_price,
+            'lowest_price' => $lowest_price,
+            'max_price' => $max_price,
             'short_descp' => $request->short_descp,
             'long_descp' => $request->long_descp,
             'bedrooms' => $request->bedrooms,

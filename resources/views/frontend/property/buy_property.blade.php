@@ -1,6 +1,7 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
 
+
 @section('title')
 Buy Property Easy RealEstate
 @endsection
@@ -35,33 +36,33 @@ Buy Property Easy RealEstate
                         <div class="widget-title">
                             <h5>Property</h5>
                             @php
-                        $states = App\Models\State::latest()->get();
-                        $ptypes = App\Models\PropertyType::latest()->get();
+                                $states = App\Models\State::latest()->get();
+                                $ptypes = App\Models\PropertyType::latest()->get();
 
-                        @endphp
+                             @endphp
                         </div>
-                        <div class="widget-content">
-                            <div class="select-box">
-                                <select class="wide">
-                                    <option data-display="Select Type">Select Type</option>
-                                    @foreach($ptypes as $type)
-                                        <option value="{{ $type->type_name }}">{{ $type->type_name }}</option>
-                                        @endforeach
-                                </select>
-                            </div>
-                            <div class="select-box">
-                                <select class="wide">
-                                    <option data-display="Select Location">Select Location</option>
-                                    @foreach($states as $state)
-                                        <option value="{{ $state->state_name }}">{{ $state->state_name }}</option>
-                                        @endforeach
-                                </select>
-                            </div>
-                            <div class="filter-btn">
-                                <button type="submit" class="theme-btn btn-one"><i class="fas fa-filter"></i>&nbsp;Filter</button>
+                            <div class="widget-content">
+                                <div class="select-box">
+                                    <select class="wide">
+                                        <option data-display="Select Type">Select Type</option>
+                                        @foreach($ptypes as $type)
+                                            <option value="{{ $type->type_name }}">{{ $type->type_name }}</option>
+                                            @endforeach
+                                    </select>
+                                </div>
+                                <div class="select-box">
+                                    <select class="wide">
+                                        <option data-display="Select Location">Select Location</option>
+                                        @foreach($states as $state)
+                                            <option value="{{ $state->state_name }}">{{ $state->state_name }}</option>
+                                            @endforeach
+                                    </select>
+                                </div>
+                                <div class="filter-btn">
+                                    <button type="submit" class="theme-btn btn-one"><i class="fas fa-filter"></i>&nbsp;Filter</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
 
                     @if(session('message'))
@@ -134,8 +135,8 @@ Buy Property Easy RealEstate
                 <div class="property-content-side">
                     <div class="item-shorting clearfix">
                         <div class="left-column pull-left">
-                            @if($property)
-                                <h5>Search Results: <span>Showing {{ $property->total() }} Listings</span></h5>
+                            @if(isset($property))
+                                <h5>Search Results: <span>Showing {{ method_exists($property, 'total') ? $property->total() : $property->count() }} Listings</span></h5>
                             @else
                                 <h5>Search Results: <span>Showing 0 Listings</span></h5>
                             @endif
@@ -143,11 +144,11 @@ Buy Property Easy RealEstate
                                 <div class="active-filter">
                                     <p>Active Price Filter: 
                                         @if(session('min_price') && session('max_price'))
-                                            ₹{{ number_format(session('min_price')) }} - ₹{{ number_format(session('max_price')) }}
+                                            ₹{{ formatIndianPrice(session('min_price')) }} - ₹{{ formatIndianPrice(session('max_price')) }}
                                         @elseif(session('min_price'))
-                                            Above ₹{{ number_format(session('min_price')) }}
+                                            Above ₹{{ formatIndianPrice(session('min_price')) }}
                                         @elseif(session('max_price'))
-                                            Below ₹{{ number_format(session('max_price')) }}
+                                            Below ₹{{ formatIndianPrice(session('max_price')) }}
                                         @endif
                                         <br><br><a href="{{ route('buy.property') }}" class="clear-filter">[Clear Filter]</a>
                                     </p>
@@ -184,7 +185,7 @@ Buy Property Easy RealEstate
                                             <div class="price-box clearfix">
                                                 <div class="price-info pull-left">
                                                     <h6>Start From</h6>
-                                                    <h4>₹ {{ number_format((float)$item->lowest_price) }}</h4>
+                                                    <h4>₹{{ $item->lowest_price }}</h4>
                                                 </div>
 
                                                 @if($item->agent_id == Null)
