@@ -81,7 +81,7 @@ $isMainIndexPage = Request::url() == url('/');
                                 </li>
                                 <li><a href="#agent-team"><span>Agent </span></a> </li>
 
-                                <li><a href="{{ route('blog.list') }}"><span>Blog </span></a> </li>
+                                <li><a href="{{ route('blog.list') }}"><span>Seller </span></a> </li>
 
 
                                 <li><a href="{{ route('contactus') }}"><span>Contact</span></a></li>

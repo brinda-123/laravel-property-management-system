@@ -368,28 +368,30 @@
                             <div class="widget-title">
                                 <h4>Mortgage Calculator</h4>
                             </div>
-                            <form method="post" action="mortgage-calculator.html" class="default-form">
+                            <form method="post" action="{{ route('mortgage.calculate') }}" class="default-form">
+                                @csrf
+                                <input type="hidden" name="property_id" value="{{ $property->id }}">
                                 <div class="form-group">
                                     <i class="fas fa-rupee-sign"></i>
-                                    <input type="number" name="total_amount" placeholder="Total Amount">
+                                    <input type="number" name="total_amount" placeholder="Total Amount" required>
                                 </div>
                                 <div class="form-group">
                                     <i class="fas fa-rupee-sign"></i>
-                                    <input type="number" name="down_payment" placeholder="Down Payment">
+                                    <input type="number" name="down_payment" placeholder="Down Payment" required>
                                 </div>
                                 <div class="form-group">
                                     <i class="fas fa-percent"></i>
-                                    <input type="number" name="interest_rate" placeholder="Interest Rate">
+                                    <input type="number" name="interest_rate" placeholder="Interest Rate" step="0.01" required>
                                 </div>
                                 <div class="form-group">
                                     <i class="far fa-calendar-alt"></i>
-                                    <input type="number" name="loan" placeholder="Loan Terms(Years)">
+                                    <input type="number" name="loan" placeholder="Loan Terms(Years)" required>
                                 </div>
                                 <div class="form-group">
                                     <div class="select-box">
-                                        <select class="wide">
-                                            <option data-display="Monthly">Monthly</option>
-                                            <option value="1">Yearly</option>
+                                        <select class="wide" name="payment_frequency" required>
+                                            <option value="monthly" selected>Monthly</option>
+                                            <option value="yearly">Yearly</option>
                                         </select>
                                     </div>
                                 </div>
@@ -397,6 +399,17 @@
                                     <button type="submit" class="theme-btn btn-one">Calculate Now</button>
                                 </div>
                             </form>
+
+                            @if(session('mortgage_result'))
+                            <div class="mortgage-result mt-3 p-3 border rounded bg-light">
+                                <h5>Mortgage Calculation Result</h5>
+                                <p><strong>Loan Amount:</strong> ₹{{ number_format(session('mortgage_result.principal'), 2) }}</p>
+                                <p><strong>Interest Rate:</strong> {{ session('mortgage_result.interest_rate') }}%</p>
+                                <p><strong>Loan Term:</strong> {{ session('mortgage_result.loan_years') }} years</p>
+                                <p><strong>Payment Frequency:</strong> {{ ucfirst(session('mortgage_result.payment_frequency')) }}</p>
+                                <p><strong>Estimated Payment:</strong> ₹{{ number_format(session('mortgage_result.payment'), 2) }} per {{ session('mortgage_result.payment_frequency') }}</p>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

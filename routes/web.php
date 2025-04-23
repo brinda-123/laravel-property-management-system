@@ -389,9 +389,14 @@ Route::middleware(['auth', 'roles:agent'])->group(function () {
      });
 }); // End Group Agent Middleware
 
+ 
 // Frontend Property Details All Route 
 
-Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
+Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails'])->name('property.details');
+
+use App\Http\Controllers\MortgageCalculatorController;
+
+Route::post('/mortgage-calculate', [MortgageCalculatorController::class, 'mortgageCalculate'])->name('mortgage.calculate');
 
 // Wishlist Add Route 
 Route::post('/add-to-wishList/{property_id}', [WishlistController::class, 'AddToWishList']);
