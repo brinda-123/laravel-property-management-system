@@ -15,6 +15,14 @@ class UserController extends Controller
     } // End Method 
 
 
+    public function dashboard()
+    {
+        $id = Auth::user()->id;
+        $userData = User::find($id);
+        return view('dashboard', compact('userData'));
+    } // End Method
+
+
     public function UserProfile(){
 
         $id = Auth::user()->id;

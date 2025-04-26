@@ -73,28 +73,70 @@ class SellerController extends Controller
     }
 
     public function submitProperty(Request $request)
+
     {
+
         $request->validate([
+
             'property_title' => 'required|string|max:255',
+
             'property_description' => 'required|string',
+
             'property_price' => 'required|numeric',
+
             'agent_id' => 'required|exists:users,id',
+
         ]);
 
+
+
         $property = new Property();
-        $property->title = $request->property_title;
-        $property->description = $request->property_description;
-        $property->price = $request->property_price;
-        $property->seller_id = Auth::id();
+
+        $property->property_name = $request->property_title;
+
+        $property->short_descp = $request->property_description;
+
+        $property->lowest_price = $request->property_price;
+
+        // Set required columns with default or dummy values to avoid DB errors
+        $property->ptype_id = 'default_ptype'; // Set a default or get from request if available
+        $property->amenities_id = 'default_amenities'; // Set a default or get from request if available
+        $property->property_slug = \Str::slug($request->property_title);
+        $property->property_code = 'CODE' . rand(1000, 9999);
+        $property->property_status = 'available';
+        $property->property_thambnail = 'default_thumbnail.jpg';
+
+        $property->agent_id = $request->agent_id;
+
         $property->save();
 
+
+
         // Send email to selected agent
+
         $agent = User::find($request->agent_id);
+
         $sellerName = Auth::user()->name;
+
         $propertyData = $request->only('property_title', 'property_description', 'property_price');
 
-        Mail::to($agent->email)->send(new PropertySubmissionMail($propertyData, $sellerName));
+
+
+        \Log::info('Before sending mail to agent: ' . $agent->email);
+        try {
+            // Commenting out from() override to use default MAIL_FROM_ADDRESS
+            Mail::to($agent->email)->send(new PropertySubmissionMail($propertyData, $sellerName));
+            // Mail::to($agent->email)->send((new PropertySubmissionMail($propertyData, $sellerName))
+            //     ->from(Auth::user()->email, Auth::user()->name));
+            \Log::info('Mail sent successfully to agent: ' . $agent->email);
+        } catch (\Exception $e) {
+            \Log::error('Mail sending failed: ' . $e->getMessage());
+        }
+        \Log::info('After mail sending attempt to agent: ' . $agent->email);
+
+
 
         return redirect()->route('seller.dashboard')->with('success', 'Property details submitted successfully and email sent to the agent.');
+
     }
 }

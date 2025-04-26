@@ -19,8 +19,9 @@ use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
-use App\Http\Controllers\Frontend\SellerController;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
 
 /*   
 |--------------------------------------------------------------------------
@@ -39,6 +40,41 @@ use App\Http\Controllers\Frontend\SellerController;
 
 // User Frontend All Route 
 Route::get('/', [UserController::class, 'Index']);
+
+
+
+// Test email route for diagnosis - added without disturbing old code
+Route::get('/test-email', function () {
+    $details = [
+        'title' => 'Test Email from Laravel',
+        'body' => 'This is a test email to verify mail configuration.'
+    ];
+
+    Mail::to('brindakotadiya1105@gmail.com')->send(new TestMail($details));
+
+    return 'Test email sent. Check your inbox.';
+});
+
+
+
+
+Route::get('/dashboard', function () {
+     return view('dashboard');
+ })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/seller/register', [App\Http\Controllers\Frontend\SellerController::class, 'showRegistrationForm'])->name('seller.register');
+Route::post('/seller/register', [App\Http\Controllers\Frontend\SellerController::class, 'register'])->name('seller.register.submit');
+Route::get('/seller/login', [App\Http\Controllers\Frontend\SellerController::class, 'showLoginForm'])->name('seller.login');
+Route::post('/seller/login', [App\Http\Controllers\Frontend\SellerController::class, 'login'])->name('seller.login.submit');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/seller/dashboard', [App\Http\Controllers\Frontend\SellerController::class, 'dashboard'])->name('seller.dashboard');
+    Route::post('/seller/property', [App\Http\Controllers\Frontend\SellerController::class, 'submitProperty'])->name('seller.property.submit');
+
+    Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+
+    Route::get('/agent/dashboard', [App\Http\Controllers\AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
+});
 
 
 
@@ -83,19 +119,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-
-
-// Seller Routes
-Route::get('/seller/register', [SellerController::class, 'showRegistrationForm'])->name('seller.register');
-Route::post('/seller/register', [SellerController::class, 'register'])->name('seller.register.submit');
-
-Route::get('/seller/login', [SellerController::class, 'showLoginForm'])->name('seller.login');
-Route::post('/seller/login', [SellerController::class, 'login'])->name('seller.login.submit');
-
-Route::middleware('auth')->group(function () {
-Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard');
-Route::post('/seller/property', [SellerController::class, 'submitProperty'])->name('seller.property.submit');
-});
 
 
 /// Admin Group Middleware 
@@ -344,6 +367,8 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
 
 
+
+
 /// Agent Group Middleware 
 Route::middleware(['auth', 'roles:agent'])->group(function () {
 
@@ -403,14 +428,9 @@ Route::middleware(['auth', 'roles:agent'])->group(function () {
      });
 }); // End Group Agent Middleware
 
- 
 // Frontend Property Details All Route 
 
-Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails'])->name('property.details');
-
-use App\Http\Controllers\MortgageCalculatorController;
-
-Route::post('/mortgage-calculate', [MortgageCalculatorController::class, 'mortgageCalculate'])->name('mortgage.calculate');
+Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
 
 // Wishlist Add Route 
 Route::post('/add-to-wishList/{property_id}', [WishlistController::class, 'AddToWishList']);
