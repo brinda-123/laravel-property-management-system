@@ -19,6 +19,7 @@ use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
+use App\Http\Controllers\Frontend\SellerController;
 
 
 /*   
@@ -82,6 +83,19 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+
+// Seller Routes
+Route::get('/seller/register', [SellerController::class, 'showRegistrationForm'])->name('seller.register');
+Route::post('/seller/register', [SellerController::class, 'register'])->name('seller.register.submit');
+
+Route::get('/seller/login', [SellerController::class, 'showLoginForm'])->name('seller.login');
+Route::post('/seller/login', [SellerController::class, 'login'])->name('seller.login.submit');
+
+Route::middleware('auth')->group(function () {
+Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard');
+Route::post('/seller/property', [SellerController::class, 'submitProperty'])->name('seller.property.submit');
+});
 
 
 /// Admin Group Middleware 
