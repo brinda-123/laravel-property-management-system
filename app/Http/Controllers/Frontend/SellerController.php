@@ -139,4 +139,32 @@ class SellerController extends Controller
         return redirect()->route('seller.dashboard')->with('success', 'Property details submitted successfully and email sent to the agent.');
 
     }
+    // public function submitProperty(Request $request)
+    // {
+    //     $request->validate([
+    //         'property_title' => 'required|string|max:255',
+    //         'property_description' => 'required|string',
+    //         'property_price' => 'required|numeric',
+    //         'agent_id' => 'required|exists:users,id',
+    //     ]);
+    
+    //     // Get the selected agent
+    //     $agent = User::where('role', 'agent')->findOrFail($request->agent_id);
+    
+    //     // Wrap property data in an array
+    //     $propertyData = [
+    //         'property_title' => $request->property_title,
+    //         'property_description' => $request->property_description,
+    //         'property_price' => $request->property_price,
+    //     ];
+    
+    //     $sellerName = Auth::user()->name;
+    
+    //     // Send mail to agent
+    //     Mail::to($agent->email)->send(new PropertySubmissionMail($propertyData, $sellerName));
+    
+    //     return redirect()->back()->with('success', 'Property submitted and email sent to agent!');
+    // }
+    
+
 }
